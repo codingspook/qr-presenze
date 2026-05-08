@@ -1,0 +1,16 @@
+{
+  "name": "attendance-qr-platform",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @attendance/backend --filter @attendance/mobile dev",
+    "dev:backend": "pnpm --filter @attendance/backend dev",
+    "dev:mobile": "pnpm --filter @attendance/mobile dev",
+    "build": "pnpm --filter @attendance/backend build",
+    "lint": "pnpm --filter @attendance/backend lint",
+    "typecheck": "pnpm --recursive typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

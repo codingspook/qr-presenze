@@ -1,0 +1,32 @@
+{
+    "name": "@attendance/backend",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "next dev -p 3000",
+        "build": "next build",
+        "start": "next start -p 3000",
+        "lint": "next lint",
+        "typecheck": "tsc --noEmit",
+        "payload": "payload",
+        "gen:types": "payload generate:types",
+        "gen:importmap": "payload generate:importmap"
+    },
+    "dependencies": {
+        "@payloadcms/db-postgres": "^3.84.1",
+        "@payloadcms/next": "^3.84.1",
+        "@payloadcms/payload-cloud": "^3.84.1",
+        "@payloadcms/richtext-lexical": "^3.84.1",
+        "jose": "^6.2.3",
+        "next": "16.2.6",
+        "payload": "^3.84.1",
+        "react": "^19.2.6",
+        "react-dom": "^19.2.6"
+    },
+    "devDependencies": {
+        "@types/node": "^25.6.2",
+        "@types/react": "^19.2.14",
+        "@types/react-dom": "^19.2.3",
+        "typescript": "^6.0.3"
+    }
+}
