@@ -17,12 +17,27 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
         },
     });
 
-    const data = await response.json();
-    if (!response.ok) {
-        throw new Error(data.error || "Request failed");
+    const text = await response.text();
+    let data: Record<string, unknown> = {};
+    if (text.trim()) {
+        try {
+            data = JSON.parse(text) as Record<string, unknown>;
+        } catch {
+            throw new Error(
+                `Risposta non valida dal server (${response.status}). Controlla che ${API_URL} sia raggiungibile.`,
+            );
+        }
+    } else if (!response.ok) {
+        throw new Error(`Richiesta fallita (${response.status}). Corpo vuoto.`);
     }
 
-    return data;
+    if (!response.ok) {
+        const message =
+            typeof data.error === "string" ? data.error : `Request failed (${response.status})`;
+        throw new Error(message);
+    }
+
+    return data as T;
 }
 
 export const api = {

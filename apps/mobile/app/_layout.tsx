@@ -1,15 +1,22 @@
-import '../src/global.css'
+import "@/global.css";
 
-import { Stack } from 'expo-router'
+import { StudentSessionProvider } from "@/lib/student-session";
+import { NAV_THEME } from "@/lib/theme";
+import { ThemeProvider } from "@react-navigation/native";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { PortalHost } from "@rn-primitives/portal";
+import { useUniwind } from "uniwind";
 
 export default function RootLayout() {
-  return (
-    <Stack
-      screenOptions={{
-        headerStyle: { backgroundColor: '#111827' },
-        headerTintColor: '#f8fafc',
-        contentStyle: { backgroundColor: '#111827' },
-      }}
-    />
-  )
+    const { theme } = useUniwind();
+    return (
+        <StudentSessionProvider>
+            <ThemeProvider value={NAV_THEME[theme ?? "light"]}>
+                <StatusBar style={theme === "dark" ? "light" : "dark"} />
+                <Stack screenOptions={{ headerShown: false }} />
+                <PortalHost />
+            </ThemeProvider>
+        </StudentSessionProvider>
+    );
 }
